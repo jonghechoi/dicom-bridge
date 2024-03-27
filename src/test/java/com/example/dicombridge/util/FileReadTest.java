@@ -3,16 +3,15 @@ package com.example.dicombridge.util;
 import com.example.dicombridge.domain.dto.thumbnail.ThumbnailDto;
 import com.example.dicombridge.domain.dto.thumbnail.ThumbnailWithFileDto;
 import com.example.dicombridge.repository.ImageRepository;
-import jcifs.smb.SmbFileInputStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,8 +75,8 @@ class FileReadTest {
     private Callable<Void> getFileString(String fname, ThumbnailDto thumbnailDto, Map<String, ThumbnailWithFileDto> thumbnailWithFileDtoMap) {
         ThumbnailWithFileDto thumbnailWithFileDto = new ThumbnailWithFileDto(thumbnailDto);
         Callable<Void> task = () -> {
-            SmbFileInputStream smbFileInputStream = imageConvert.getSmbFileInputStream(thumbnailDto);
-            byte[] byteArray = imageConvert.convert2ByteArray(smbFileInputStream);
+            FileInputStream fileInputStream = imageConvert.getFileInputStream(thumbnailDto);
+            byte[] byteArray = imageConvert.convert2ByteArray(fileInputStream);
             File dcmFile = imageConvert.convert2DcmFile(byteArray);
             String imgString = imageConvert.convertDcm2Jpg(dcmFile);
 

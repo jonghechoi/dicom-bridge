@@ -60,7 +60,7 @@ export function bytesToStringUTF8 (array) {
     str += ('%' + pad(array[i].toString(16)))
   }  // end for i
 
-  console.log(str);
+  // console.log(str);
   // this works only for utf8 byte sequences
   return decodeURIComponent(str);
 } // end function bytesToStringUTF8

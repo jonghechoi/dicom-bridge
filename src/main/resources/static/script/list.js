@@ -130,10 +130,6 @@ function displayItems(response, startIndex, batchSize, totalItems) {
     }
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 $(document).on("dblclick", "tr.subTr", function() {
     const studyinsuid = $(this).data('studyinsuid');
     const studykey = $(this).data('studykey');
@@ -141,12 +137,12 @@ $(document).on("dblclick", "tr.subTr", function() {
     const pname = $(this).data('pname');
     const pid = $(this).find('.pid').text();
     if (studyinsuid && studykey) { //같은 modal의 studyinsuid 종류별로 찾기
-        let first = Date.now();
+        // let first = Date.now();
         saveRedis(modality);
-        let second = Date.now();
-        sleep(2000).then(() => {
-            console.log("Redis 이미지 저장 소요 시간 : " + (second-first));
-        });
+        // let second = Date.now();
+        // sleep(2000).then(() => {
+        //     console.log("Redis 이미지 저장 소요 시간 : " + (second-first));
+        // });
         setTimeout(10000);
         $.ajax({
             type: "POST",
@@ -176,7 +172,6 @@ $(document).on("dblclick", "tr.subTr", function() {
 /** Report **/
 $(document).ready(function() {
     function setReportInput(reportstatus) { // reportstatus에 따라 입력될 값을 설정하는 함수
-        console.log(reportstatus);
         const adminInput = "administrator";
         const empty = "";
 

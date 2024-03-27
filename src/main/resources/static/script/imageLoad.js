@@ -1,5 +1,5 @@
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:8080" // 서버의 URL
+    baseURL: "http://localhost:8081" // 서버의 URL
 });
 
 /** Grid Config **/
