@@ -28,7 +28,6 @@ public class StudyService {
 
     public List<StudyResponseDto> getStudiesByStudyKey(int studykey) {
         List<Study> studyList = studyRepository.findByStudykey(studykey); // studykey에 해당하는 studies를 가져오는 로직 추가
-        System.out.println("studyList : "+studyList);
         return studyList.stream()
                 .map(StudyResponseDto::new)
                 .collect(Collectors.toList());

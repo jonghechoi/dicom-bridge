@@ -6,35 +6,18 @@ import com.example.dicombridge.domain.image.Image;
 import com.example.dicombridge.repository.ImageRepository;
 import com.example.dicombridge.util.FileRead;
 import com.example.dicombridge.util.ImageConvert;
-import jcifs.Address;
-import jcifs.CIFSContext;
-import jcifs.CIFSException;
-import jcifs.config.PropertyConfiguration;
-import jcifs.context.BaseContext;
-import jcifs.smb.NtlmPasswordAuthenticator;
-import jcifs.smb.SmbException;
-import jcifs.smb.SmbFile;
-import jcifs.smb.SmbFileInputStream;
 import lombok.RequiredArgsConstructor;
-import org.dcm4che3.tool.dcm2jpg.Dcm2Jpg;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.UnknownHostException;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -66,7 +49,7 @@ public class ImageService {
     }
 
     /** Thumbnail **/
-    public Map<String, ThumbnailWithFileDto> getThumbnail(int studyKey) throws IOException, ExecutionException, InterruptedException {
+    public Map<String, ThumbnailWithFileDto> getThumbnail(int studyKey) throws ExecutionException, InterruptedException {
         Map<String, ThumbnailDto> map = new HashMap<>();
         List<ThumbnailDto> images = imageRepository.findImageAndSeriesDesc(studyKey);
 

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class ThumbnailDto implements PathAndName {
     private Integer imagekey;
     private Integer serieskey;
@@ -19,4 +19,18 @@ public class ThumbnailDto implements PathAndName {
     private String fname;
     private Integer delflag;
     private String seriesdesc;
+
+    public ThumbnailDto(Integer imagekey, Integer serieskey, String studyinsuid, String seriesinsuid, String sopinstanceuid,
+                        String sopclassuid, String path, String fname, Integer delflag, String seriesdesc) {
+        this.imagekey = imagekey;
+        this.serieskey = serieskey;
+        this.studyinsuid = studyinsuid;
+        this.seriesinsuid = seriesinsuid;
+        this.sopinstanceuid = sopinstanceuid;
+        this.sopclassuid = sopclassuid;
+        this.path = path;
+        this.fname = fname;
+        this.delflag = delflag;
+        this.seriesdesc = seriesdesc;
+    }
 }

@@ -51,7 +51,7 @@ public class Storage {
             this.cifsContext = new BaseContext(configuration).withCredentials(auth);
             Address address = cifsContext.getNameServiceClient().getByName(HOST);
             cifsContext.getTransportPool().logon(cifsContext, address);
-        } catch (UnknownHostException | CIFSException e) {
+        } catch (CIFSException | UnknownHostException e) {
             throw new RuntimeException(e);
         }
     }
